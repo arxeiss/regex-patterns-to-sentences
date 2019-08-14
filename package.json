@@ -1,0 +1,20 @@
+{
+  "name": "regex-patterns-to-sentences",
+  "version": "1.0.0",
+  "description": "Convert Aggregated Regex Patterns into sentences",
+  "private": true,
+  "scripts": {
+    "convert": "npx ts-node src/convert.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/fs-extra": "^8.0.0",
+    "@types/node": "^12.7.1",
+    "@types/uuid": "^3.4.5",
+    "fs-extra": "^8.1.0",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3",
+    "uuid": "^3.3.2"
+  }
+}
