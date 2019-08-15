@@ -1,11 +1,12 @@
 import fs from 'fs-extra';
-import util from 'util';
 import { SentenceBatch } from './SentenceBatch';
 import { Sentence } from './Sentence';
+import { RegexParser } from './RegexParser';
+import { CombinationGenerator } from './CombinationGenerator';
+import { EntityMap } from './EntityMap';
 
 export class RegexToSentenceGenerator {
-  private optionsRegex = RegExp(/\(([^)]+)\)(\?)?(\s*)/g);
-  private patterns = new Map<string, any>();
+  private entityMap = new EntityMap();
 
   processFile(sentencesFilePath: string): SentenceBatch {
     if (!fs.pathExistsSync(sentencesFilePath)) {
@@ -19,65 +20,34 @@ export class RegexToSentenceGenerator {
       .split(/[\n\r]+/)
       .forEach((sentence: string) => {
         const singleSentenceBatch = this.processSentence(sentence);
-        batch.push(...singleSentenceBatch.getAll());
+        if (singleSentenceBatch !== null) {
+          batch.push(...singleSentenceBatch.getAll());
+        }
       });
 
     return batch;
   }
 
   processSentence(sentenceLine: string): SentenceBatch {
-    // Handle comments
-    if (sentenceLine.startsWith('#')) {
-      return new SentenceBatch();
+    sentenceLine = sentenceLine.trim();
+    // Handle comments and empty lines
+    if (sentenceLine.startsWith('#') || sentenceLine.length === 0) {
+      return null;
     }
 
-    const placeholders = new Array<Array<string>>();
-
-    let matches: any;
-    let sentenceWithPlaceholders = sentenceLine;
-    while ((matches = this.optionsRegex.exec(sentenceLine)) !== null) {
-      sentenceWithPlaceholders = sentenceWithPlaceholders.replace(matches[0], '%s');
-
-      const possibilities = new Array<string>();
-      if (matches[2] === '?') {
-        possibilities.push('');
-      }
-      possibilities.push(...matches[1].split('|').map((phrase: any) => `${phrase}${matches[3]}`));
-
-      placeholders.push(possibilities);
+    const { textWithEntities, entityMap } = RegexParser.extractEntities(sentenceLine);
+    if (!entityMap.isEmpty()) {
+      this.entityMap = EntityMap.mergeIntoNew(this.entityMap, entityMap);
     }
 
-    const sentence = new Sentence(sentenceWithPlaceholders, placeholders);
-
-    return this.generateAllCombinations(sentence);
-  }
-
-  private processEntityPatterns(sentence: Sentence) {}
-
-  private generateAllCombinations(sentence: Sentence): SentenceBatch {
-    const combinations = new Array<Array<string>>();
-    sentence.placeholders[0].forEach(val => {
-      combinations.push([val]);
-    });
-
-    for (let i = 1; i < sentence.placeholders.length; i++) {
-      const currentCombinations = combinations.splice(0);
-
-      for (let c = 0; c < currentCombinations.length; c++) {
-        const currentCombination = currentCombinations[c];
-
-        for (let p = 0; p < sentence.placeholders[i].length; p++) {
-          const element = sentence.placeholders[i][p];
-
-          combinations.push([...currentCombination, element]);
-        }
-      }
+    if (RegexParser.isSingleEntityDefinition(sentenceLine)) {
+      return null;
     }
 
+    const { textWithPlaceholders, placeholders } = RegexParser.extractOptions(textWithEntities);
     const batch = new SentenceBatch();
-
-    combinations.forEach(combination => {
-      batch.push(util.format(sentence.text, ...combination));
+    CombinationGenerator.manyToMany(placeholders).forEach(combination => {
+      batch.push(new Sentence(textWithPlaceholders, combination, this.entityMap));
     });
 
     return batch;

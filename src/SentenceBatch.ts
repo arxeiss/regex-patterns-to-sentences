@@ -1,18 +1,19 @@
 import uuidV4 from 'uuid/v4';
+import { Sentence } from './Sentence';
 
 export class SentenceBatch {
-  private sentences = new Array<string>();
+  private sentences = new Array<Sentence>();
 
-  push(...sentences: string[]) {
+  push(...sentences: Sentence[]) {
     this.sentences.push(...sentences);
   }
 
-  getAll(): Array<string> {
+  getAll(): Array<Sentence> {
     return this.sentences;
   }
 
   toString(): string {
-    return this.sentences.join('\n');
+    return this.sentences.map((sentence: Sentence) => sentence.toString()).join('\n');
   }
 
   toDialogFlowJSON(): Array<any> {
@@ -21,7 +22,7 @@ export class SentenceBatch {
     this.sentences.forEach(sentence => {
       dfJSON.push({
         id: uuidV4(),
-        data: [{ text: sentence, userDefined: false }],
+        data: sentence.toDfJSON(),
         isTemplate: false,
         count: 0,
         updated: 0
