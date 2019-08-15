@@ -16,11 +16,9 @@ export class Sentence {
   }
 
   toString(): string {
-    let stringified = this.replacePlaceholders()
-      .replace(/%\{([a-z0-9\-]+)\}/gi, (wholeMatch, entityName) => {
-        return this.entityMap.getNextPhrase(entityName);
-      })
-      .trim();
+    let stringified = RegexParser.replaceEntityPlaceholder(this.replacePlaceholders(), entityName => {
+      return this.entityMap.getNextPhrase(entityName);
+    }).trim();
 
     return stringified;
   }

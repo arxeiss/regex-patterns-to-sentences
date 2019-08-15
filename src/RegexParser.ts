@@ -4,10 +4,11 @@ import { EntityMap } from './EntityMap';
 
 export class RegexParser {
   private static optionsRegex = RegExp(/\(([^)]+)\)(\?)?(\s*)/g);
-  private static entityPatternRegex = RegExp(/@([a-z0-9\-]+)(?:\{([^\}]+)\})?/gi);
-  private static entityDefinitionMatchRegex = RegExp(/^@([a-z0-9\-]+)\{([^\}]+)\}$/i);
-  private static entityPlaceholderSplitterRegex = RegExp(/(%\{[a-z0-9\-]+\})/gi);
-  private static entityPlaceholderMatchRegex = RegExp(/^%\{([a-z0-9\-]+)\}$/i);
+  private static entityPatternRegex = RegExp(/@([a-z0-9_.\-]+)(?:\{([^\}]+)\})?/gi);
+  private static entityDefinitionMatchRegex = RegExp(/^@([a-z0-9_.\-]+)\{([^\}]+)\}$/i);
+  private static entityPlaceholderSplitterRegex = RegExp(/(%\{[a-z0-9_.\-]+\})/gi);
+  private static entityPlaceholderMatchRegex = RegExp(/^%\{([a-z0-9_.\-]+)\}$/i);
+  private static entityPlaceholderReplaceRegex = RegExp(/%\{([a-z0-9_.\-]+)\}/gi);
 
   static extractOptions(text: string) {
     const placeholders = new Array<Array<string>>();
@@ -71,5 +72,11 @@ export class RegexParser {
 
   static matchEntityPlaceholder(text: string): RegExpExecArray {
     return this.entityPlaceholderMatchRegex.exec(text);
+  }
+
+  static replaceEntityPlaceholder(text: string, replaceCallback: (name: string) => string): string {
+    return text.replace(this.entityPlaceholderReplaceRegex, (wholeMatch, entityName) => {
+      return replaceCallback(entityName);
+    });
   }
 }
