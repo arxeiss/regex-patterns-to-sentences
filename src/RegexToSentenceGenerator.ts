@@ -38,6 +38,7 @@ export class RegexToSentenceGenerator {
     const { textWithEntities, entityMap } = RegexParser.extractEntities(sentenceLine);
     if (!entityMap.isEmpty()) {
       this.entityMap = EntityMap.mergeIntoNew(this.entityMap, entityMap);
+      this.entityMap.shuffleEntityPhrasesOptions();
     }
 
     if (RegexParser.isSingleEntityDefinition(sentenceLine)) {

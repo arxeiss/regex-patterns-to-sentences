@@ -19,6 +19,12 @@ export class EntityMap {
     return this.data.size === 0;
   }
 
+  shuffleEntityPhrasesOptions() {
+    this.data.forEach((entity: Entity) => {
+      entity.shufflePhrasesOptions();
+    });
+  }
+
   static mergeIntoNew(...entities: EntityMap[]): EntityMap {
     const newEntityMap = new EntityMap();
 
