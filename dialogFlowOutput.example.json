@@ -1,0 +1,314 @@
+[
+  {
+    "id": "a6c6fb92-7a0d-4a27-9047-2aeb4be488cc",
+    "data": [
+      {
+        "text": "I am Pavel",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "6480f7ed-2764-44f0-a7a6-ecd4648f7ec3",
+    "data": [
+      {
+        "text": "I am Pavel from Ostrava",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "bb243a98-fae7-4094-8c77-c47cc1465ff5",
+    "data": [
+      {
+        "text": "I'm Pavel",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "8a6499c1-26c9-463a-89da-826380d3b29a",
+    "data": [
+      {
+        "text": "I'm Pavel from Ostrava",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "6cea9b5f-63e7-4d26-a4fd-f855fdef5861",
+    "data": [
+      {
+        "text": "Flying from ",
+        "userDefined": false
+      },
+      {
+        "text": "Bratislava to Madrid",
+        "alias": "journeyEU",
+        "meta": "@journeyEU",
+        "userDefined": false
+      },
+      {
+        "text": " every day in the morning",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "22216333-d51e-4bdb-af80-9140d66ffd69",
+    "data": [
+      {
+        "text": "Flying from ",
+        "userDefined": false
+      },
+      {
+        "text": "Prague to Paris",
+        "alias": "journeyEU",
+        "meta": "@journeyEU",
+        "userDefined": false
+      },
+      {
+        "text": " every day in the evening",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "35b88dbb-38db-47c4-99a5-39673705664a",
+    "data": [
+      {
+        "text": "Flying from ",
+        "userDefined": false
+      },
+      {
+        "text": "Ostrava to Berlin",
+        "alias": "journeyEU",
+        "meta": "@journeyEU",
+        "userDefined": false
+      },
+      {
+        "text": " every week in the morning",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "e9bef154-7828-4e14-9fe1-71d382ee55c1",
+    "data": [
+      {
+        "text": "Flying from ",
+        "userDefined": false
+      },
+      {
+        "text": "Vienna to Madrid",
+        "alias": "journeyEU",
+        "meta": "@journeyEU",
+        "userDefined": false
+      },
+      {
+        "text": " every week in the evening",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "754c0a14-5030-4254-a41d-78e46d0edb04",
+    "data": [
+      {
+        "text": "Flying from ",
+        "userDefined": false
+      },
+      {
+        "text": "Ostrava to Paris",
+        "alias": "journeyEU",
+        "meta": "@journeyEU",
+        "userDefined": false
+      },
+      {
+        "text": " every first Monday in the month in the morning",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "691bb76a-a407-40a2-9594-98bee4760459",
+    "data": [
+      {
+        "text": "Flying from ",
+        "userDefined": false
+      },
+      {
+        "text": "Prague to Berlin",
+        "alias": "journeyEU",
+        "meta": "@journeyEU",
+        "userDefined": false
+      },
+      {
+        "text": " every first Monday in the month in the evening",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "8380ba80-5093-4b9e-b63f-e484e34b6f6d",
+    "data": [
+      {
+        "text": "Flying from ",
+        "userDefined": false
+      },
+      {
+        "text": "Wroclaw to Venice",
+        "alias": "journeyEU",
+        "meta": "@journeyEU",
+        "userDefined": false
+      },
+      {
+        "text": " every day?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "e795abcf-f425-448d-a026-671582104404",
+    "data": [
+      {
+        "text": "Flying from ",
+        "userDefined": false
+      },
+      {
+        "text": "Krakow to Venice",
+        "alias": "journeyEU",
+        "meta": "@journeyEU",
+        "userDefined": false
+      },
+      {
+        "text": " every week?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "d351386e-0e92-4489-a1dd-917f857091f1",
+    "data": [
+      {
+        "text": "Flying from ",
+        "userDefined": false
+      },
+      {
+        "text": "Krakow to Munich",
+        "alias": "journeyEU",
+        "meta": "@journeyEU",
+        "userDefined": false
+      },
+      {
+        "text": " every first Monday in the month?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "febc32c2-de37-4b35-8673-668c9a2afedc",
+    "data": [
+      {
+        "text": "Flying from ",
+        "userDefined": false
+      },
+      {
+        "text": "Oslo to Washington",
+        "alias": "journeyWorld",
+        "meta": "@journeyWorld",
+        "userDefined": false
+      },
+      {
+        "text": " every day?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "891ab0c0-da1d-4ca7-be7a-c43d7f187a08",
+    "data": [
+      {
+        "text": "Flying from ",
+        "userDefined": false
+      },
+      {
+        "text": "Amsterdam to New York",
+        "alias": "journeyWorld",
+        "meta": "@journeyWorld",
+        "userDefined": false
+      },
+      {
+        "text": " every week?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "feed5cf2-f849-43d5-a098-325ad8a5215b",
+    "data": [
+      {
+        "text": "Flying from ",
+        "userDefined": false
+      },
+      {
+        "text": "Oslo to New York",
+        "alias": "journeyWorld",
+        "meta": "@journeyWorld",
+        "userDefined": false
+      },
+      {
+        "text": " every first Monday in the month?",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  }
+]

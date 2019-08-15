@@ -1,0 +1,15 @@
+# This sentence will result in 4 sentences
+I( am|'m) Pavel( from Ostrava)?
+
+# Defining entity @journeyEU
+# It contains 4 + 4 pairs. Semicolon split multiple regular expressions
+@journeyEU{(Ostrava|Prague) to (Paris|Berlin);(Bratislava|Vienna) to (Madrid|Helsinki)}
+
+Flying from @journeyEU every (day|week|first Monday in the month) in the (morning|evening)
+
+# Here @journeyEU can be redefined. Changes are applies then from here and down
+@journeyEU{(Krakow|Wroclaw) to (Venice|Munich)}
+@journeyWorld{(Amsterdam|Oslo) to (New York|Washington)}
+
+# Check escaped `?` to prevent attaching it into regular expression
+Flying from (@journeyEU|@journeyWorld) every (day|week|first Monday in the month)\?
