@@ -1,9 +1,9 @@
 import fs from 'fs-extra';
-import { SentenceBatch } from './SentenceBatch';
-import { Sentence } from './Sentence';
+import { SentenceBatch } from './Sentence/SentenceBatch';
+import { Sentence } from './Sentence/Sentence';
 import { RegexParser } from './RegexParser';
 import { CombinationGenerator } from './CombinationGenerator';
-import { EntityMap } from './EntityMap';
+import { EntityMap } from './Entity/EntityMap';
 
 export class RegexToSentenceGenerator {
   private entityMap = new EntityMap();

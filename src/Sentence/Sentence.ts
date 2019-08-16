@@ -1,6 +1,6 @@
-import { EntityMap } from './EntityMap';
+import { EntityMap } from '../Entity/EntityMap';
 import util from 'util';
-import { RegexParser } from './RegexParser';
+import { RegexParser } from '../RegexParser';
 
 export class Sentence {
   text: string;

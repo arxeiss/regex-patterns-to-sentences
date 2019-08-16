@@ -1,6 +1,6 @@
 import { CombinationGenerator } from './CombinationGenerator';
 import util from 'util';
-import { EntityMap } from './EntityMap';
+import { EntityMap } from './Entity/EntityMap';
 
 export class RegexParser {
   private static optionsRegex = RegExp(/\(([^)]+)\)(\?)?(\s*)/g);
