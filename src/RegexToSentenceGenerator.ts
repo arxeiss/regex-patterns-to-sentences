@@ -9,16 +9,23 @@ import { Config } from './Config/Config';
 
 export class RegexToSentenceGenerator {
   private entityMap = new EntityMap();
+  private config: Config;
+
+  constructor(config: Config) {
+    this.config = config;
+  }
 
   processEntities(entities: Map<string, EntityConfig>) {
     const newEntityMap = new EntityMap();
 
     entities.forEach((entity: EntityConfig, name: string) => {
       const entityOptions = new Array<EntityOption>();
+
       entity.phrases.forEach((phrase: string) => {
-        entityOptions.push(RegexParser.extractEntityOptions(phrase));
+        entityOptions.push(RegexParser.extractEntityOptions(this.config.applyVars(phrase)));
       });
-      newEntityMap.add(name, entityOptions, entity.alias, entity.meta);
+
+      newEntityMap.add(name, entityOptions, this.config.applyVars(entity.alias), this.config.applyVars(entity.meta));
     });
 
     this.entityMap = EntityMap.mergeIntoNew(this.entityMap, newEntityMap);
@@ -43,7 +50,7 @@ export class RegexToSentenceGenerator {
   }
 
   processSentence(sentenceLine: string, repeat?: number): SentenceBatch {
-    sentenceLine = sentenceLine.trim();
+    sentenceLine = this.config.applyVars(sentenceLine.trim());
     repeat = repeat || 1;
 
     const { textWithEntities, entityMap } = RegexParser.extractEntities(sentenceLine);

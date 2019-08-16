@@ -1,3 +1,10 @@
+# Var name can contain letters, numbers and underscore
+# Variable name must be between {{ and }}, whitespace chars are ignored before/after name
+vars:
+  euCities: "Ostrava|Prague"
+  entityAlias: "journey"
+  date_Part1: "(day|week|first Monday in the month)"
+
 output:
   dialogFlowJSONFile: "dialogFlowOutput.json"
   stdout: true
@@ -5,10 +12,10 @@ output:
 # Global settings
 entities:
   "@journeyEU":
-    alias: "journey"
-    meta: "@journey"
+    alias: "{{ entityAlias }}"
+    meta: "@{{ entityAlias }}"
     phrases:
-      - "(Ostrava|Prague) to (Paris|Berlin)"
+      - "({{euCities}}) to (Paris|Berlin)"
       - "(Bratislava|Vienna) to (Madrid|Helsinki)"
 
   "@journeyWorld":
@@ -21,13 +28,13 @@ sentences:
 - "I( am|'m) Pavel( from Ostrava)?"
 
 # Taking journeyEU from global scope
-- "Flying from @journeyEU every (day|week|first Monday in the month) in the (morning|evening)"
+- "Flying from @journeyEU every {{ date_Part1 }} in the (morning|evening)"
 
 # This override global scope of journeyEU
 - entities:
     "@journeyEU":
-      alias: "journey"
-      meta: "@journey"
+      alias: "{{ entityAlias }}"
+      meta: "@{{ entityAlias }}"
       phrases:
         - "(Krakow|Wroclaw) to (Venice|Munich)"
 
@@ -35,5 +42,5 @@ sentences:
 - "Domestic flights from @journeyEU{(Ostrava|Brno) to Pardubice;Pardubice to (Ostrava|Brno)} (once|twice|three times) per (week|month)"
 
 # @journeyEU here uses again global scope
-- sentence: "Are you flying from (@journeyEU|@journeyWorld) every (day|week|first Monday in the month)\\?"
+- sentence: "Are you flying from (@journeyEU|@journeyWorld) every {{ date_Part1 }}\\?"
   repeat: 1
