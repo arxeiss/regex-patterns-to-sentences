@@ -6,7 +6,6 @@ import { EntityOption } from './Entity/EntityOption';
 export class RegexParser {
   private static optionsRegex = RegExp(/\(([^)]+)\)(\?)?(\s*)/g);
   private static entityPatternRegex = RegExp(/@([a-z0-9_.\-]+)(?:\{([^\}]+)\})?/gi);
-  private static entityDefinitionMatchRegex = RegExp(/^@([a-z0-9_.\-]+)\{([^\}]+)\}$/i);
   private static entityPlaceholderSplitterRegex = RegExp(/(%\{[a-z0-9_.\-]+\})/gi);
   private static entityPlaceholderMatchRegex = RegExp(/^%\{([a-z0-9_.\-]+)\}$/i);
   private static entityPlaceholderReplaceRegex = RegExp(/%\{([a-z0-9_.\-]+)\}/gi);
@@ -47,30 +46,22 @@ export class RegexParser {
       // Cannot be replaced in original text - regex.exec then doesn't work correctly
       textWithEntities = textWithEntities.replace(matches[0], `%{${matches[1]}}`);
 
-      // if (matches[2]) {
-      //   const phrases = new Array<string>();
-      //   // Filter here remove empty items
-      //   matches[2]
-      //     .split(';')
-      //     .filter((v: string) => v)
-      //     .forEach((entityOption: string) => {
-      //       const { textWithPlaceholders, placeholders } = this.extractOptions(entityOption);
-      //       console.log(placeholders);
+      if (matches[2]) {
+        const options = new Array<EntityOption>();
+        // Filter here remove empty items
+        matches[2]
+          .split(';')
+          .filter((v: string) => v)
+          .forEach((entityOption: string) => {
+            const { textWithPlaceholders, placeholders } = this.extractOptions(entityOption);
+            options.push(new EntityOption(textWithPlaceholders, placeholders));
+          });
 
-      //       CombinationGenerator.manyToMany(placeholders).forEach(combination => {
-      //         phrases.push(util.format(textWithPlaceholders, ...combination));
-      //       });
-      //     });
-
-      //   entityMap.add(matches[1], phrases);
-      // }
+        entityMap.add(matches[1], options);
+      }
     }
 
     return { textWithEntities, entityMap };
-  }
-
-  static isSingleEntityDefinition(text: string): boolean {
-    return this.entityDefinitionMatchRegex.exec(text) !== null;
   }
 
   static splitByEntityPlaceholders(text: string): Array<string> {

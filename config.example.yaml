@@ -1,0 +1,39 @@
+output:
+  dialogFlowJSONFile: "dialogFlowOutput.json"
+  stdout: true
+
+# Global settings
+entities:
+  "@journeyEU":
+    alias: "journey"
+    meta: "@journey"
+    phrases:
+      - "(Ostrava|Prague) to (Paris|Berlin)"
+      - "(Bratislava|Vienna) to (Madrid|Helsinki)"
+
+  "@journeyWorld":
+    # Alias and meta is derived from entity name
+    phrases:
+      - "(Amsterdam|Oslo) to (New York|Washington)"
+
+sentences:
+# This sentence will result in 4 sentences
+- "I( am|'m) Pavel( from Ostrava)?"
+
+# Taking journeyEU from global scope
+- "Flying from @journeyEU every (day|week|first Monday in the month) in the (morning|evening)"
+
+# This override global scope of journeyEU
+- entities:
+    "@journeyEU":
+      alias: "journey"
+      meta: "@journey"
+      phrases:
+        - "(Krakow|Wroclaw) to (Venice|Munich)"
+
+# @journeyEU options are override only for this once sentence
+- "Domestic flights from @journeyEU{(Ostrava|Brno) to Pardubice;Pardubice to (Ostrava|Brno)} (once|twice|three times) per (week|month)"
+
+# @journeyEU here uses again global scope
+- sentence: "Are you flying from (@journeyEU|@journeyWorld) every (day|week|first Monday in the month)\\?"
+  repeat: 1

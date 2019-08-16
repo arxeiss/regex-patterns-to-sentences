@@ -1,3 +1,4 @@
+> ⚠️ **Warning**: README is currently outdated - instead of **senteces.txt** is used config.yaml file. Check **config.example.yaml**
 
 # Simple Regex patterns to DialogFlow sentences generator
 

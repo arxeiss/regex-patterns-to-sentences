@@ -51,7 +51,8 @@ export class RegexToSentenceGenerator {
     let inlineEntityMap: EntityMap = null;
     if (!entityMap.isEmpty()) {
       // If is inside sentence - used only for this instance
-      inlineEntityMap = EntityMap.mergeIntoNew(this.entityMap, entityMap);
+      inlineEntityMap = EntityMap.mergeIntoNew(this.entityMap);
+      inlineEntityMap.replaceOptions(entityMap);
     }
 
     const { textWithPlaceholders, placeholders } = RegexParser.extractOptions(textWithEntities);
