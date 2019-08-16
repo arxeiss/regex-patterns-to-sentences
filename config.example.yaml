@@ -8,7 +8,7 @@ vars:
 # If not absolute path to file, then is relative to this YAML file
 # If file path is not string, file is not created
 output:
-  dialogFlowJSONFile: "dialogFlowOutput.example.json"
+  dialogFlowJSONFile: "dialogFlowOutput.json"
   stdout: true
 
 # Global entities settings

@@ -1,36 +1,35 @@
-> ⚠️ **Warning**: README is currently outdated - instead of **senteces.txt** is used config.yaml file. Check **config.example.yaml**
-
 # Simple Regex patterns to DialogFlow sentences generator
 
-This tools helps to generate training phrases for [Google DialogFlow](https://dialogflow.com/) and output JSON file which can be imported into DialogFlow supporting also **parsing entities**.
+This tools helps to generate training phrases for [Google DialogFlow](https://dialogflow.com/) and output JSON file which can be imported into DialogFlow. Also supports **parsing entities**.
 
-It takes all sentences in file *sentences.txt* with optional entities and generate all possible combinations based on simple regular expression matching.
+It takes all sentences in file *config.yaml* with optional entities and generate all possible combinations based on simple regular expression matching.
 
 ## Installation and usage
-Install all Node dependencies, and run command `convert` with example sentences file. If file name is omitted, *sentences.txt* is used. Syntax and possibilities are explained below.
+Install all Node dependencies, and run command `convert` with example sentences file. If file name is omitted, *config.yaml* is used. Syntax and possibilities are explained below.
 
 ```bash
 npm install
-npm run convert sentences.example.txt
+cp config.example.yaml config.yaml
+npm run convert
 ```
 
-This will output all generated sentences into console but also create *dialogFlowOutput.json* file which can be imported into DialogFlow console. If importing into single Intent, download file first and output from file put under `userSays` key in root Object. You can check *dialogFlowOutput.example.json* file .
+This will output all generated sentences into console but also create *dialogFlowOutput.json* file which can be imported into DialogFlow console. If you are importing single Intent, put JSON output under key `userSays` of original export. You can check *dialogFlowOutput.example.json* file .
 
 ## Syntax of file
-File supports comments, entity definitions and sentences. Each line starting with `#` symbol is treated as comment and is ignored, empty lines are ignored as well.
-
-Every sentence should be on single line and can contain very basic subset of regular expression. Into sentence can be placed multiple entities which are then parsed in DialogFlow JSON file.
+File supports variables, entity definitions and sentences. Variables are name-value pairs, where name should consist of letters, numbers and underscore.
+Check **config.example.json** first.
 
 ### Regular expression possibilities
 - `Count (one|two)` - will generate two sentences with each number
-- `Count (one|two)?` - will generate three sentences with each number and one without
+- `Count (one|two)?` - will generate three sentences with each number and one without any.
 - `Count from (one|two) to (nine|ten)` - will generate 4 sentences with pairs `one-nine`, `one-ten`, `two-nine`, `two-ten`
 - Nesting `I'm (1st|2nd|3rd|(4|5|6)th)`**is not supported** - the inner (4|5|6) will not work properly
 
-**Example**
-```
+**Sentence example**
+```yaml
+sentences:
 # This sentence will result in 4 sentences
-I( am|'m) Pavel( from Ostrava)?.
+- "I( am|'m) Pavel( from Ostrava)?."
 ```
 
 Output
@@ -42,18 +41,25 @@ I'm Pavel from Ostrava.
 ```
 
 ### Entities matching and DialogFlow syntax
-Main benefit of tool is to generate [entities](https://cloud.google.com/dialogflow/docs/entities-overview) in JSON. In the beginning of file entities must be defined with possible phrases, which can be defined again with regular expression as above. Entity is then replaced with one of phrases and marked in DialogFlow JSON.
-Each entity is defined on single line and must be defined before first use in any sentence.
+Main benefit of tool is to generate [entities](https://cloud.google.com/dialogflow/docs/entities-overview) in JSON. Entities can be defined under `entities` key and those are saved globally. If entities are defined in `sentences` section, those are also saved into the global scope, but affects only sentences under this definition.
+
+Last possible option is to define entities inside sentence which affects only one given sentence. Multiple phrases can be divided by semicolon `;`.
 
 **Example**
-```
-# Defining entity @journey
-# It contains 4 + 4 pairs. Semicolon split multiple regular expressions
-@journey{(Ostrava|Prague) to (Paris|Berlin);(Bratislava|Vienna) to (Madrid|Helsinki)}
+```yaml
+entities:
+  "@journeyEU":
+    alias: "journey"
+    meta: "@journey"
+    phrases:
+      - "(Ostrava|Prague) to (Paris|Berlin)"
+      - "(Bratislava|Vienna) to (Madrid|Helsinki)"
 
-Flying from @journey every (day|week|first Monday in the month) in the (morning|evening)
+sentences:
+- "Flying from @journeyEU every (day|week|first Monday in the month) in the (morning|evening)"
 ```
 Output: There are 6 sentences because original sentence generate 6 possibilities. Entities are then inserted randomly from all 8 journey possibilities.
+Alias and meta is there because of DialogFlow JSON below. It overrides default `@journeyEU` into `@journey`.
 ```
 Flying from Bratislava to Madrid every day in the morning
 Flying from Bratislava to Helsinki every day in the evening
@@ -62,7 +68,6 @@ Flying from Prague to Paris every week in the evening
 Flying from Vienna to Helsinki every first Monday in the month in the morning
 Flying from Ostrava to Paris every first Monday in the month in the evening
 ```
-
 
 #### Output in DialogFlow JSON
 ```json
@@ -93,15 +98,24 @@ Flying from Ostrava to Paris every first Monday in the month in the evening
 ]
 ```
 
-
 ### Entities inside regular expressions and escaped '?'
 Entities can be inserted into sentence inside regular expression as well.
-```
-@journeyEU{(Ostrava|Prague) to (Paris|Berlin);(Bratislava|Vienna) to (Madrid|Helsinki)}
-@journeyWorld{(Amsterdam|Oslo) to (New York|Washington)}
+```yaml
+entities:
+  "@journeyEU":
+    alias: "journey"
+    meta: "@journey"
+    phrases:
+      - "(Ostrava|Prague) to (Paris|Berlin)"
+      - "(Bratislava|Vienna) to (Madrid|Helsinki)"
 
+  "@journeyWorld":
+    phrases:
+      - "(Amsterdam|Oslo) to (New York|Washington)"
+
+sentences:
 # Check escaped `?` to prevent attaching it into regular expression
-Flying from (@journeyEU|@journeyWorld) every (day|week|first Monday in the month)\?
+- Flying from (@journeyEU|@journeyWorld) every (day|week|first Monday in the month)\?
 ```
 
 Output:
