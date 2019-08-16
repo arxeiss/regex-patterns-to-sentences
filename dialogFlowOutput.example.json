@@ -1,6 +1,6 @@
 [
   {
-    "id": "f5bd7234-7339-495e-8b56-a79244e5685d",
+    "id": "baec655f-57bf-467a-860b-0f1c1089641e",
     "data": [
       {
         "text": "I am Pavel",
@@ -12,7 +12,7 @@
     "updated": 0
   },
   {
-    "id": "6c43ccd1-ef2f-422e-9815-ae3afd08a2d1",
+    "id": "7d8ec4f7-5b73-4677-a34d-7457daa3e8b1",
     "data": [
       {
         "text": "I am Pavel from Ostrava",
@@ -24,7 +24,7 @@
     "updated": 0
   },
   {
-    "id": "ef31abf8-a933-46c0-bc30-8cae8170de23",
+    "id": "3626382d-94e6-4aee-8681-0cfc3f5bb0a1",
     "data": [
       {
         "text": "I'm Pavel",
@@ -36,7 +36,7 @@
     "updated": 0
   },
   {
-    "id": "a6a74aea-4b02-4c94-aaa1-2b804011be97",
+    "id": "4d384a3e-f110-430f-8dc8-20256b2fcf4b",
     "data": [
       {
         "text": "I'm Pavel from Ostrava",
@@ -48,14 +48,14 @@
     "updated": 0
   },
   {
-    "id": "a9c8c5fc-dce8-4bb3-a400-83a065c15b8e",
+    "id": "5766a587-87c3-42da-882e-5b9e17235d88",
     "data": [
       {
         "text": "Flying from ",
         "userDefined": false
       },
       {
-        "text": "Pardubice to Brno",
+        "text": "Vienna to Madrid",
         "alias": "journey",
         "meta": "@journey",
         "userDefined": false
@@ -70,14 +70,14 @@
     "updated": 0
   },
   {
-    "id": "7dac942a-18ff-40db-a5ee-92cfe5cfcc13",
+    "id": "fd33012d-259c-4385-9c01-8984ec10a2ed",
     "data": [
       {
         "text": "Flying from ",
         "userDefined": false
       },
       {
-        "text": "Brno to Pardubice",
+        "text": "Ostrava to Paris",
         "alias": "journey",
         "meta": "@journey",
         "userDefined": false
@@ -92,14 +92,14 @@
     "updated": 0
   },
   {
-    "id": "1e90d7b1-f192-4a1d-a500-18ba302a5a2b",
+    "id": "9bb2d05e-d61f-473f-b08c-1986c353eb09",
     "data": [
       {
         "text": "Flying from ",
         "userDefined": false
       },
       {
-        "text": "Pardubice to Brno",
+        "text": "Prague to Berlin",
         "alias": "journey",
         "meta": "@journey",
         "userDefined": false
@@ -114,14 +114,14 @@
     "updated": 0
   },
   {
-    "id": "9d0f139d-fa35-4270-9790-82a2474a4b77",
+    "id": "2ca53780-b7c1-4e19-ba95-0aedeea09ac8",
     "data": [
       {
         "text": "Flying from ",
         "userDefined": false
       },
       {
-        "text": "Pardubice to Ostrava",
+        "text": "Ostrava to Berlin",
         "alias": "journey",
         "meta": "@journey",
         "userDefined": false
@@ -136,14 +136,14 @@
     "updated": 0
   },
   {
-    "id": "3a533579-5ba1-4cd4-9311-fab420a43367",
+    "id": "824f271e-93e6-4fdf-bc1b-9ff4f9e95b55",
     "data": [
       {
         "text": "Flying from ",
         "userDefined": false
       },
       {
-        "text": "Pardubice to Brno",
+        "text": "Prague to Berlin",
         "alias": "journey",
         "meta": "@journey",
         "userDefined": false
@@ -158,14 +158,14 @@
     "updated": 0
   },
   {
-    "id": "099e2226-6783-4abf-8f89-3bf754d91248",
+    "id": "dc5ba04f-3bff-4e2e-ad9c-956f8203ccd9",
     "data": [
       {
         "text": "Flying from ",
         "userDefined": false
       },
       {
-        "text": "Ostrava to Pardubice",
+        "text": "Ostrava to Berlin",
         "alias": "journey",
         "meta": "@journey",
         "userDefined": false
@@ -180,14 +180,146 @@
     "updated": 0
   },
   {
-    "id": "371ed4a4-49be-48bf-82e8-60bdd4ea9cab",
+    "id": "7e3f5199-0932-4232-b838-16e6483614e6",
+    "data": [
+      {
+        "text": "Flying from ",
+        "userDefined": false
+      },
+      {
+        "text": "Prague to Berlin",
+        "alias": "journey",
+        "meta": "@journey",
+        "userDefined": false
+      },
+      {
+        "text": " every day in the morning",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "8455580b-728d-4c2d-b019-bab255b6a018",
+    "data": [
+      {
+        "text": "Flying from ",
+        "userDefined": false
+      },
+      {
+        "text": "Prague to Berlin",
+        "alias": "journey",
+        "meta": "@journey",
+        "userDefined": false
+      },
+      {
+        "text": " every day in the evening",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "8ec47e51-3df6-4450-99ff-fb700de672f1",
+    "data": [
+      {
+        "text": "Flying from ",
+        "userDefined": false
+      },
+      {
+        "text": "Vienna to Madrid",
+        "alias": "journey",
+        "meta": "@journey",
+        "userDefined": false
+      },
+      {
+        "text": " every week in the morning",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "b8051cfc-8e64-4308-8cda-96a7d345b320",
+    "data": [
+      {
+        "text": "Flying from ",
+        "userDefined": false
+      },
+      {
+        "text": "Ostrava to Paris",
+        "alias": "journey",
+        "meta": "@journey",
+        "userDefined": false
+      },
+      {
+        "text": " every week in the evening",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "e8d85a08-635d-4274-bf2a-b833aed7dea8",
+    "data": [
+      {
+        "text": "Flying from ",
+        "userDefined": false
+      },
+      {
+        "text": "Prague to Paris",
+        "alias": "journey",
+        "meta": "@journey",
+        "userDefined": false
+      },
+      {
+        "text": " every first Monday in the month in the morning",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "b6689988-c11c-418d-9f6b-0c0ca51b8875",
+    "data": [
+      {
+        "text": "Flying from ",
+        "userDefined": false
+      },
+      {
+        "text": "Bratislava to Madrid",
+        "alias": "journey",
+        "meta": "@journey",
+        "userDefined": false
+      },
+      {
+        "text": " every first Monday in the month in the evening",
+        "userDefined": false
+      }
+    ],
+    "isTemplate": false,
+    "count": 0,
+    "updated": 0
+  },
+  {
+    "id": "96d5e85f-15cf-41cc-9068-713a77a755a0",
     "data": [
       {
         "text": "Domestic flights from ",
         "userDefined": false
       },
       {
-        "text": "Ostrava to Pardubice",
+        "text": "Pardubice to Brno",
         "alias": "journey",
         "meta": "@journey",
         "userDefined": false
@@ -202,14 +334,14 @@
     "updated": 0
   },
   {
-    "id": "d130daef-6c2e-48af-a11d-b0b6babe2e7c",
+    "id": "de645e95-05b9-493e-85bf-e59f36cef050",
     "data": [
       {
         "text": "Domestic flights from ",
         "userDefined": false
       },
       {
-        "text": "Ostrava to Pardubice",
+        "text": "Brno to Pardubice",
         "alias": "journey",
         "meta": "@journey",
         "userDefined": false
@@ -224,14 +356,14 @@
     "updated": 0
   },
   {
-    "id": "824bf75d-e1bc-410a-828c-95fa2ee2b1cd",
+    "id": "4bf70d5a-6710-413f-9458-545d4e1e88b5",
     "data": [
       {
         "text": "Domestic flights from ",
         "userDefined": false
       },
       {
-        "text": "Ostrava to Pardubice",
+        "text": "Pardubice to Brno",
         "alias": "journey",
         "meta": "@journey",
         "userDefined": false
@@ -246,14 +378,14 @@
     "updated": 0
   },
   {
-    "id": "a743cdd3-b83b-4890-82ff-a02b66e197c7",
+    "id": "8aef6a34-185d-4d87-87c6-9925f65399e5",
     "data": [
       {
         "text": "Domestic flights from ",
         "userDefined": false
       },
       {
-        "text": "Pardubice to Ostrava",
+        "text": "Brno to Pardubice",
         "alias": "journey",
         "meta": "@journey",
         "userDefined": false
@@ -268,14 +400,14 @@
     "updated": 0
   },
   {
-    "id": "9ec77fb3-3e1b-4c7f-b5c2-fa72a3cfaf97",
+    "id": "740098c4-5085-4d7c-9a62-fd7ee7583d75",
     "data": [
       {
         "text": "Domestic flights from ",
         "userDefined": false
       },
       {
-        "text": "Pardubice to Ostrava",
+        "text": "Pardubice to Brno",
         "alias": "journey",
         "meta": "@journey",
         "userDefined": false
@@ -290,14 +422,14 @@
     "updated": 0
   },
   {
-    "id": "88c645ff-cbdc-4017-bf12-677ad8f6dffd",
+    "id": "a2268868-7149-496b-a835-2790339e4d4c",
     "data": [
       {
         "text": "Domestic flights from ",
         "userDefined": false
       },
       {
-        "text": "Pardubice to Ostrava",
+        "text": "Ostrava to Pardubice",
         "alias": "journey",
         "meta": "@journey",
         "userDefined": false
@@ -312,14 +444,14 @@
     "updated": 0
   },
   {
-    "id": "dff6ea59-82f9-4413-bfd5-6b605775d078",
+    "id": "f1bded30-127f-4c01-87f0-76f6a4c3680a",
     "data": [
       {
         "text": "Are you flying from ",
         "userDefined": false
       },
       {
-        "text": "Brno to Pardubice",
+        "text": "Wroclaw to Munich",
         "alias": "journey",
         "meta": "@journey",
         "userDefined": false
@@ -334,14 +466,14 @@
     "updated": 0
   },
   {
-    "id": "97b72acd-4f0a-4740-8d1b-e3b3961e31e6",
+    "id": "b5692f5d-e518-41ab-a8fa-a99bc84c25f7",
     "data": [
       {
         "text": "Are you flying from ",
         "userDefined": false
       },
       {
-        "text": "Pardubice to Brno",
+        "text": "Wroclaw to Venice",
         "alias": "journey",
         "meta": "@journey",
         "userDefined": false
@@ -356,14 +488,14 @@
     "updated": 0
   },
   {
-    "id": "279a424a-37bf-4443-94c0-dcab0c64ad91",
+    "id": "3e0c3e72-841b-4e55-8d9f-921b0c36885f",
     "data": [
       {
         "text": "Are you flying from ",
         "userDefined": false
       },
       {
-        "text": "Brno to Pardubice",
+        "text": "Wroclaw to Venice",
         "alias": "journey",
         "meta": "@journey",
         "userDefined": false
@@ -378,14 +510,14 @@
     "updated": 0
   },
   {
-    "id": "0879be67-9c83-4e6f-8271-9b5458b5df93",
+    "id": "28b7456f-9848-4c5c-a9ad-72691d5f6556",
     "data": [
       {
         "text": "Are you flying from ",
         "userDefined": false
       },
       {
-        "text": "Oslo to Washington",
+        "text": "Oslo to New York",
         "alias": "journeyWorld",
         "meta": "@journeyWorld",
         "userDefined": false
@@ -400,14 +532,14 @@
     "updated": 0
   },
   {
-    "id": "26040670-0bd5-484f-82af-412a75a39a1d",
+    "id": "2aefabbf-b98a-49b8-af6f-f932976fea1c",
     "data": [
       {
         "text": "Are you flying from ",
         "userDefined": false
       },
       {
-        "text": "Amsterdam to New York",
+        "text": "Amsterdam to Washington",
         "alias": "journeyWorld",
         "meta": "@journeyWorld",
         "userDefined": false
@@ -422,14 +554,14 @@
     "updated": 0
   },
   {
-    "id": "1526b47d-bf61-4d75-ac41-9615d8628685",
+    "id": "7f719e22-ba5b-45f0-8cf4-b8e459b1bf3e",
     "data": [
       {
         "text": "Are you flying from ",
         "userDefined": false
       },
       {
-        "text": "Amsterdam to New York",
+        "text": "Amsterdam to Washington",
         "alias": "journeyWorld",
         "meta": "@journeyWorld",
         "userDefined": false

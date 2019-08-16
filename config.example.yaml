@@ -1,15 +1,17 @@
 # Var name can contain letters, numbers and underscore
-# Variable name must be between {{ and }}, whitespace chars are ignored before/after name
+# Applied variable name must be between {{ and }}, whitespace chars are ignored before/after name
 vars:
   euCities: "Ostrava|Prague"
   entityAlias: "journey"
-  date_Part1: "(day|week|first Monday in the month)"
+  date_part1: "(day|week|first Monday in the month)"
 
+# If not absolute path to file, then is relative to this YAML file
+# If file path is not string, file is not created
 output:
-  dialogFlowJSONFile: "dialogFlowOutput.json"
+  dialogFlowJSONFile: "dialogFlowOutput.example.json"
   stdout: true
 
-# Global settings
+# Global entities settings
 entities:
   "@journeyEU":
     alias: "{{ entityAlias }}"
@@ -28,7 +30,9 @@ sentences:
 - "I( am|'m) Pavel( from Ostrava)?"
 
 # Taking journeyEU from global scope
-- "Flying from @journeyEU every {{ date_Part1 }} in the (morning|evening)"
+# Sentence will result in 6 sentences and will be repeated 2. Totally will be printed 12 times
+- sentence: "Flying from @journeyEU every {{ date_part1 }} in the (morning|evening)"
+  repeat: 2
 
 # This override global scope of journeyEU
 - entities:
@@ -38,9 +42,9 @@ sentences:
       phrases:
         - "(Krakow|Wroclaw) to (Venice|Munich)"
 
-# @journeyEU options are override only for this once sentence
+# @journeyEU phrases are overridden only for this once sentence
 - "Domestic flights from @journeyEU{(Ostrava|Brno) to Pardubice;Pardubice to (Ostrava|Brno)} (once|twice|three times) per (week|month)"
 
 # @journeyEU here uses again global scope
-- sentence: "Are you flying from (@journeyEU|@journeyWorld) every {{ date_Part1 }}\\?"
-  repeat: 1
+# ? is escaped here to not be taken into regular expression
+- "Are you flying from (@journeyEU|@journeyWorld) every {{ date_part1 }}\\?"

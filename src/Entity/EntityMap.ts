@@ -40,7 +40,7 @@ export class EntityMap {
 
     entities.forEach((entityMap: EntityMap) => {
       entityMap.data.forEach((entity: Entity, name: string) => {
-        newEntityMap.data.set(name, entity);
+        newEntityMap.data.set(name, new Entity(entity.name, entity.options, entity.alias, entity.meta));
       });
     });
 

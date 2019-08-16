@@ -6,7 +6,8 @@ import { Config } from './Config/Config';
 import path from 'path';
 
 try {
-  const configPath = process.argv[2] || 'config.yaml';
+  const configPath = path.resolve(process.argv[2] || 'config.yaml');
+
   if (!fs.pathExistsSync(configPath)) {
     throw 'Pass path to config file or create config.yaml';
   }
@@ -23,7 +24,11 @@ try {
   }
 
   if (typeof config.output.dialogFlowJSONFile === 'string') {
-    fs.writeFileSync(config.output.dialogFlowJSONFile, JSON.stringify(dfSentences.toDialogFlowJSON(), null, 2));
+    let outputPath = config.output.dialogFlowJSONFile;
+    if (!path.isAbsolute(outputPath)) {
+      outputPath = `${path.dirname(configPath)}${path.sep}${outputPath}`;
+    }
+    fs.writeFileSync(outputPath, JSON.stringify(dfSentences.toDialogFlowJSON(), null, 2));
   }
   console.info(`Everything done - totally generated ${dfSentences.getAll().length} sentences`);
 } catch (error) {
