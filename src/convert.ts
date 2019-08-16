@@ -18,11 +18,13 @@ try {
 
   if (config.output.stdout === true) {
     console.log(dfSentences.toString());
+    console.info('\n');
   }
 
   if (typeof config.output.dialogFlowJSONFile === 'string') {
     fs.writeFileSync(config.output.dialogFlowJSONFile, JSON.stringify(dfSentences.toDialogFlowJSON(), null, 2));
   }
+  console.info(`Everything done - totally generated ${dfSentences.getAll().length} sentences`);
 } catch (error) {
   console.error(error);
 }
