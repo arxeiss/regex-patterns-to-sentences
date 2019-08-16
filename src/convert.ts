@@ -1,14 +1,28 @@
+import 'reflect-metadata';
 import { RegexToSentenceGenerator } from './RegexToSentenceGenerator';
 import fs from 'fs-extra';
-
-const sentencesFilePath = process.argv[2] || 'sentences.txt';
+import yaml from 'js-yaml';
+import { Config } from './Config/Config';
 
 try {
-  const dfSentences = new RegexToSentenceGenerator().processFile(sentencesFilePath);
+  const configPath = process.argv[2] || 'config.yaml';
+  if (!fs.pathExistsSync(configPath)) {
+    throw 'Pass path to config file or create config.yaml';
+  }
 
-  console.log(dfSentences.toString());
+  const config = Config.fromPlainObject(yaml.safeLoad(fs.readFileSync(configPath, 'utf8')));
 
-  fs.writeFileSync('dialogFlowOutput.json', JSON.stringify(dfSentences.toDialogFlowJSON(), null, 2));
+  const generator = new RegexToSentenceGenerator();
+  generator.processEntities(config.entities);
+  const dfSentences = generator.processSentences(config.sentences);
+
+  if (config.output.stdout === true) {
+    console.log(dfSentences.toString());
+  }
+
+  if (typeof config.output.dialogFlowJSONFile === 'string') {
+    fs.writeFileSync(config.output.dialogFlowJSONFile, JSON.stringify(dfSentences.toDialogFlowJSON(), null, 2));
+  }
 } catch (error) {
   console.error(error);
 }

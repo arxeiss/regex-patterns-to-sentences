@@ -1,3 +1,5 @@
+import { RandomNumber } from './Random';
+
 export class CombinationGenerator {
   static manyToMany(optionsTable: Array<Array<string>>): Array<Array<string>> {
     if (optionsTable.length === 0) {
@@ -24,5 +26,19 @@ export class CombinationGenerator {
     }
 
     return combinations;
+  }
+
+  static randomOption(optionsTable: Array<Array<string>>): Array<string> {
+    if (optionsTable.length === 0) {
+      return [];
+    }
+
+    const sequence = Array<string>();
+    for (let i = 0; i < optionsTable.length; i++) {
+      const randomOption = RandomNumber.upTo(optionsTable[i].length - 1);
+      sequence.push(optionsTable[i][randomOption]);
+    }
+
+    return sequence;
   }
 }

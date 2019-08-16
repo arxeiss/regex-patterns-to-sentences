@@ -17,7 +17,7 @@ export class Sentence {
 
   toString(): string {
     let stringified = RegexParser.replaceEntityPlaceholder(this.replacePlaceholders(), entityName => {
-      return this.entityMap.getNextPhrase(entityName);
+      return this.entityMap.get(entityName).getNextPhrase();
     }).trim();
 
     return stringified;
@@ -32,10 +32,11 @@ export class Sentence {
         const matches = RegexParser.matchEntityPlaceholder(textPart);
 
         if (matches && matches[1]) {
+          const entity = this.entityMap.get(matches[1]);
           return {
-            text: this.entityMap.getNextPhrase(matches[1]),
-            alias: matches[1],
-            meta: `@${matches[1]}`,
+            text: entity.getNextPhrase(),
+            alias: entity.alias,
+            meta: entity.meta,
             userDefined: false
           };
         } else {

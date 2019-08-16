@@ -1,6 +1,7 @@
-import { CombinationGenerator } from './CombinationGenerator';
+import { CombinationGenerator } from './helpers/CombinationGenerator';
 import util from 'util';
 import { EntityMap } from './Entity/EntityMap';
+import { EntityOption } from './Entity/EntityOption';
 
 export class RegexParser {
   private static optionsRegex = RegExp(/\(([^)]+)\)(\?)?(\s*)/g);
@@ -31,6 +32,12 @@ export class RegexParser {
     return { textWithPlaceholders, placeholders };
   }
 
+  static extractEntityOptions(phrase: string): EntityOption {
+    const { textWithPlaceholders, placeholders } = this.extractOptions(phrase);
+
+    return new EntityOption(textWithPlaceholders, placeholders);
+  }
+
   static extractEntities(text: string) {
     let matches: any;
     let textWithEntities = text;
@@ -40,22 +47,23 @@ export class RegexParser {
       // Cannot be replaced in original text - regex.exec then doesn't work correctly
       textWithEntities = textWithEntities.replace(matches[0], `%{${matches[1]}}`);
 
-      if (matches[2]) {
-        const phrases = new Array<string>();
-        // Filter here remove empty items
-        matches[2]
-          .split(';')
-          .filter((v: string) => v)
-          .forEach((entityOption: string) => {
-            const { textWithPlaceholders, placeholders } = this.extractOptions(entityOption);
+      // if (matches[2]) {
+      //   const phrases = new Array<string>();
+      //   // Filter here remove empty items
+      //   matches[2]
+      //     .split(';')
+      //     .filter((v: string) => v)
+      //     .forEach((entityOption: string) => {
+      //       const { textWithPlaceholders, placeholders } = this.extractOptions(entityOption);
+      //       console.log(placeholders);
 
-            CombinationGenerator.manyToMany(placeholders).forEach(combination => {
-              phrases.push(util.format(textWithPlaceholders, ...combination));
-            });
-          });
+      //       CombinationGenerator.manyToMany(placeholders).forEach(combination => {
+      //         phrases.push(util.format(textWithPlaceholders, ...combination));
+      //       });
+      //     });
 
-        entityMap.addEntity(matches[1], phrases);
-      }
+      //   entityMap.add(matches[1], phrases);
+      // }
     }
 
     return { textWithEntities, entityMap };

@@ -1,31 +1,24 @@
+import { EntityOption } from './EntityOption';
+import { RandomNumber } from '../helpers/Random';
+
 export class Entity {
   public name: string;
-  public phrases: Array<string>;
-  private iterator: number = 0;
+  public alias?: string;
+  public meta?: string;
+  public options: Array<EntityOption>;
 
-  constructor(name: string, phrases?: Array<string>) {
+  constructor(name: string, options?: Array<EntityOption>, alias?: string, meta?: string) {
     this.name = name;
-    this.phrases = phrases || new Array<string>();
+    this.options = options || new Array<EntityOption>();
+    this.alias = alias || name.replace('@', '');
+    this.meta = meta || name;
   }
 
   getNextPhrase(): string {
-    if (this.phrases.length === 0) {
+    if (this.options.length === 0) {
       throw `Entity with name ${this.name} does not contain any phrases`;
     }
 
-    if (this.iterator >= this.phrases.length) {
-      this.iterator = 0;
-    }
-    const next = this.phrases[this.iterator];
-    this.iterator += 1;
-
-    return next;
-  }
-
-  shufflePhrasesOptions() {
-    for (let i = this.phrases.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [this.phrases[i], this.phrases[j]] = [this.phrases[j], this.phrases[i]];
-    }
+    return this.options[RandomNumber.upTo(this.options.length - 1)].getNextPhrase();
   }
 }

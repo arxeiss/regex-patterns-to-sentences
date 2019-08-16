@@ -1,28 +1,23 @@
 import { Entity } from './Entity';
+import { EntityOption } from './EntityOption';
 
 export class EntityMap {
   private data = new Map<string, Entity>();
 
-  addEntity(name: string, phrases: Array<string>) {
-    this.data.set(name, new Entity(name, phrases));
+  add(name: string, options: Array<EntityOption>, alias?: string, meta?: string) {
+    this.data.set(name.replace('@', ''), new Entity(name, options, alias, meta));
   }
 
-  getNextPhrase(name: string): string {
+  get(name: string): Entity {
     if (!this.data.has(name)) {
       throw `Entity with name ${name} was not initialized`;
     }
 
-    return this.data.get(name).getNextPhrase();
+    return this.data.get(name);
   }
 
   isEmpty(): boolean {
     return this.data.size === 0;
-  }
-
-  shuffleEntityPhrasesOptions() {
-    this.data.forEach((entity: Entity) => {
-      entity.shufflePhrasesOptions();
-    });
   }
 
   static mergeIntoNew(...entities: EntityMap[]): EntityMap {

@@ -10,9 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "@types/fs-extra": "^8.0.0",
+    "@types/js-yaml": "^3.12.1",
     "@types/node": "^12.7.1",
     "@types/uuid": "^3.4.5",
+    "class-transformer": "^0.2.3",
     "fs-extra": "^8.1.0",
+    "js-yaml": "^3.13.1",
+    "reflect-metadata": "^0.1.13",
     "ts-node": "^8.3.0",
     "typescript": "^3.5.3",
     "uuid": "^3.3.2"
