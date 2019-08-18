@@ -1,5 +1,5 @@
 import { EntityOption } from './EntityOption';
-import { RandomNumber } from '../helpers/Random';
+import { ContextRandomNumber } from '../helpers/ContextRandomNumber';
 
 export class Entity {
   public name: string;
@@ -19,6 +19,6 @@ export class Entity {
       throw `Entity with name ${this.name} does not contain any phrases`;
     }
 
-    return this.options[RandomNumber.upTo(this.options.length - 1)].getNextPhrase();
+    return this.options[ContextRandomNumber.upTo(this.options.length - 1)].getNextPhrase();
   }
 }

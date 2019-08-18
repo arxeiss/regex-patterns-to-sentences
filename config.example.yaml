@@ -11,6 +11,10 @@ output:
   dialogFlowJSONFile: "dialogFlowOutput.json"
   stdout: true
 
+random:
+  seed: 'travelling'
+  seedPrefixedByEntityName: true
+
 # Global entities settings
 entities:
   "@journeyEU":

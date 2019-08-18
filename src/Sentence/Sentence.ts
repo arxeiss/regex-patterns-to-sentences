@@ -1,6 +1,7 @@
 import { EntityMap } from '../Entity/EntityMap';
 import util from 'util';
 import { RegexParser } from '../RegexParser';
+import { ContextRandomNumber } from '../helpers/ContextRandomNumber';
 
 export class Sentence {
   text: string;
@@ -16,6 +17,8 @@ export class Sentence {
   }
 
   toString(): string {
+    ContextRandomNumber.setContext(this.text);
+
     let stringified = RegexParser.replaceEntityPlaceholder(this.replacePlaceholders(), entityName => {
       return this.entityMap.get(entityName).getNextPhrase();
     }).trim();

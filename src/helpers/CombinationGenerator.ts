@@ -1,4 +1,4 @@
-import { RandomNumber } from './Random';
+import { ContextRandomNumber } from './ContextRandomNumber';
 
 export class CombinationGenerator {
   static manyToMany(optionsTable: Array<Array<string>>): Array<Array<string>> {
@@ -35,7 +35,7 @@ export class CombinationGenerator {
 
     const sequence = Array<string>();
     for (let i = 0; i < optionsTable.length; i++) {
-      const randomOption = RandomNumber.upTo(optionsTable[i].length - 1);
+      const randomOption = ContextRandomNumber.upTo(optionsTable[i].length - 1);
       sequence.push(optionsTable[i][randomOption]);
     }
 

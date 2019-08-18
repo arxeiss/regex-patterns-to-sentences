@@ -1,6 +1,7 @@
 import { Output } from './Output';
 import { EntityConfig } from './EntityConfig';
 import { plainToClass, Type } from 'class-transformer';
+import { Random } from './Random';
 
 export class Config {
   @Type(() => Map)
@@ -8,6 +9,9 @@ export class Config {
 
   @Type(() => Output)
   output: Output;
+
+  @Type(() => Random)
+  random: Random;
 
   @Type(() => EntityConfig)
   entities: Map<string, EntityConfig>;
