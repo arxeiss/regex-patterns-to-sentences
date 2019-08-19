@@ -2,22 +2,26 @@ import { EntityMap } from '../Entity/EntityMap';
 import util from 'util';
 import { RegexParser } from '../RegexParser';
 import { ContextRandomNumber } from '../helpers/ContextRandomNumber';
+import crypto from 'crypto';
 
 export class Sentence {
+  originalSentence: string;
+
   text: string;
 
   placeholders: Array<string>;
 
   entityMap: EntityMap;
 
-  constructor(text?: string, placeholders?: Array<string>, entityMap?: EntityMap) {
+  constructor(originalSentence: string, text?: string, placeholders?: Array<string>, entityMap?: EntityMap) {
+    this.originalSentence = originalSentence;
     this.text = text || '';
     this.placeholders = placeholders || null;
     this.entityMap = entityMap || null;
   }
 
   toString(): string {
-    ContextRandomNumber.setContext(this.text);
+    this.setContextOfRandomGenerator();
 
     let stringified = RegexParser.replaceEntityPlaceholder(this.replacePlaceholders(), entityName => {
       return this.entityMap.get(entityName).getNextPhrase();
@@ -27,6 +31,8 @@ export class Sentence {
   }
 
   toDfJSON() {
+    this.setContextOfRandomGenerator();
+
     const dfJSON = RegexParser.splitByEntityPlaceholders(this.replacePlaceholders())
       .map((textPart: string) => {
         if (textPart.length === 0) {
@@ -62,5 +68,14 @@ export class Sentence {
 
   private replacePlaceholders(): string {
     return util.format(this.text, ...this.placeholders).replace('\\?', '?');
+  }
+
+  private setContextOfRandomGenerator() {
+    ContextRandomNumber.setContext(
+      crypto
+        .createHash('sha256')
+        .update(this.originalSentence, 'utf8')
+        .digest('hex')
+    );
   }
 }

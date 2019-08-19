@@ -15,7 +15,7 @@ try {
 
   const config = Config.fromPlainObject(yaml.safeLoad(fs.readFileSync(configPath, 'utf8')));
 
-  ContextRandomNumber.init(config.random.seed || null, config.random.seedPrefixedByEntityName || false);
+  ContextRandomNumber.init(config.random.seed || null, config.random.contextualSeed || false);
 
   const generator = new RegexToSentenceGenerator(config);
   generator.processEntities(config.entities);

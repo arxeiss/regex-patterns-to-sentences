@@ -12,8 +12,8 @@ output:
   stdout: true
 
 random:
-  seed: 'travelling'
-  seedPrefixedByEntityName: true
+  seed: null # Set any string to static seed to the random generator - keep null to be reasonably unpredictable
+  contextualSeed: true
 
 # Global entities settings
 entities:
