@@ -25,7 +25,7 @@ export class ContextRandomNumber {
   private static createGenerator() {
     let seed = ContextRandomNumber.seed;
     if (seed && ContextRandomNumber.useContext) {
-      seed = `${this.context}-${seed}`;
+      seed = `${seed}-${this.context}`;
     }
 
     this.generator = seedrandom(seed);

@@ -34,7 +34,7 @@ sentences:
 - "I( am|'m) Pavel( from Ostrava)?"
 
 # Taking journeyEU from global scope
-# Sentence will result in 6 sentences and will be repeated 2. Totally will be printed 12 times
+# Sentence will result in 6 sentences and will be repeated twice. Totally will be printed 12 times
 - sentence: "Flying from @journeyEU every {{ date_part1 }} in the (morning|evening)"
   repeat: 2
 
