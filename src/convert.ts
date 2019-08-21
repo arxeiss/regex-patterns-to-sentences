@@ -5,16 +5,44 @@ import yaml from 'js-yaml';
 import { Config } from './Config/Config';
 import path from 'path';
 import { ContextRandomNumber } from './helpers/ContextRandomNumber';
+import meow from 'meow';
+
+const cli = meow(
+  `
+	Usage
+	  $ npm run convert -- [-c|--config <config.yaml>] [-t|--template <template.json>]
+
+	Options
+    --config, -c  Path to config file, if omitted config.yaml is searched for
+    --template, -t  Template of DialogFlow JSON output file
+    --help, -h Show this help
+`,
+  {
+    flags: {
+      config: {
+        type: 'string',
+        alias: 'c',
+        default: 'config.yaml'
+      },
+      template: {
+        type: 'string',
+        alias: 't'
+      }
+    }
+  }
+);
+
+console.log(cli.input, cli.flags);
 
 (async () => {
   try {
-    const configPath = path.resolve(process.argv[2] || 'config.yaml');
+    const configPath = path.resolve(cli.input[0] || cli.flags.config);
 
     if (!fs.pathExistsSync(configPath)) {
-      throw 'Pass path to config file or create config.yaml';
+      throw 'Config file does not exists. Pass --config flag or create config.yaml';
     }
 
-    const templatePath = process.argv[2] && process.argv[3];
+    const templatePath = cli.flags.template || cli.input[1] || null;
     const config = Config.fromPlainObject(yaml.safeLoad(await fs.readFile(configPath, 'utf8')));
 
     ContextRandomNumber.init(config.random.seed || null, config.random.contextualSeed || false);

@@ -11,9 +11,20 @@ Install all Node dependencies, and run command `convert` with example sentences 
 npm install
 cp config.example.yaml config.yaml
 npm run convert
+
+# Pass custom config file name
+npm run convert -- --config myConfigFile.yaml
 ```
 
-This will output all generated sentences into console but also create *dialogFlowOutput.json* file which can be imported into DialogFlow console. If you are importing single Intent, put content of currently generated JSON file under key `userSays` of original exported intent. You can check *dialogFlowOutput.example.json* file .
+This will output all generated sentences into console but also create *dialogFlowOutput.json* file (name can be changed in config), which can be imported into DialogFlow console. If you are importing single Intent, put content of currently generated JSON file under key `userSays` of original exported intent, or use template. You can check *dialogFlowOutput.example.json* file.
+
+### Output template
+
+You can pass path to template file (*export from DialogFlow*), which contains `userSays` key in root object. Then *dialogFlowOutput.json* is created based on this template and data under `userSays` key are replaced with generated sentences.
+
+```bash
+npm run convert -- --template myIntentExportFromDialogFlow.json
+```
 
 ## Syntax of file
 Config supports variables, entity definitions and sentences. Random section in config file can control random number generator. Then output can be repeatable with same phrases. More about PRNG below. Check also **config.example.json** first.
