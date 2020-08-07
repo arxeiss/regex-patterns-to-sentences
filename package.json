@@ -15,7 +15,7 @@
     "@types/node": "^12.7.1",
     "@types/seedrandom": "^2.4.28",
     "@types/uuid": "^3.4.5",
-    "class-transformer": "^0.2.3",
+    "class-transformer": "^0.3.1",
     "fs-extra": "^8.1.0",
     "js-yaml": "^3.13.1",
     "meow": "^5.0.0",
