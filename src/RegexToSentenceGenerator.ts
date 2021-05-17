@@ -66,7 +66,7 @@ export class RegexToSentenceGenerator {
     const batch = new SentenceBatch();
 
     for (let i = 0; i < repeat; i++) {
-      CombinationGenerator.manyToMany(placeholders).forEach(combination => {
+      CombinationGenerator.manyToMany(placeholders).forEach((combination) => {
         batch.push(new Sentence(sentenceLine, textWithPlaceholders, combination, inlineEntityMap || this.entityMap));
       });
     }

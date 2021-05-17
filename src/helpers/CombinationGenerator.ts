@@ -7,7 +7,7 @@ export class CombinationGenerator {
     }
     const combinations = new Array<Array<string>>();
 
-    optionsTable[0].forEach(val => {
+    optionsTable[0].forEach((val) => {
       combinations.push([val]);
     });
 

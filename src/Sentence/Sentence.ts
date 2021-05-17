@@ -23,7 +23,7 @@ export class Sentence {
   toString(): string {
     this.setContextOfRandomGenerator();
 
-    let stringified = RegexParser.replaceEntityPlaceholder(this.replacePlaceholders(), entityName => {
+    const stringified = RegexParser.replaceEntityPlaceholder(this.replacePlaceholders(), (entityName) => {
       return this.entityMap.get(entityName).getNextPhrase();
     }).trim();
 
@@ -46,12 +46,12 @@ export class Sentence {
             text: entity.getNextPhrase(),
             alias: entity.alias,
             meta: entity.meta,
-            userDefined: false
+            userDefined: false,
           };
         } else {
           return {
             text: textPart,
-            userDefined: false
+            userDefined: false,
           };
         }
       })
@@ -71,11 +71,6 @@ export class Sentence {
   }
 
   private setContextOfRandomGenerator() {
-    ContextRandomNumber.setContext(
-      crypto
-        .createHash('sha256')
-        .update(this.originalSentence, 'utf8')
-        .digest('hex')
-    );
+    ContextRandomNumber.setContext(crypto.createHash('sha256').update(this.originalSentence, 'utf8').digest('hex'));
   }
 }

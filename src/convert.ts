@@ -22,13 +22,13 @@ const cli = meow(
       config: {
         type: 'string',
         alias: 'c',
-        default: 'config.yaml'
+        default: 'config.yaml',
       },
       template: {
         type: 'string',
-        alias: 't'
-      }
-    }
+        alias: 't',
+      },
+    },
   }
 );
 
@@ -43,7 +43,7 @@ console.log(cli.input, cli.flags);
     }
 
     const templatePath = cli.flags.template || cli.input[1] || null;
-    const config = Config.fromPlainObject(yaml.safeLoad(await fs.readFile(configPath, 'utf8')));
+    const config = Config.fromPlainObject(yaml.load(await fs.readFile(configPath, 'utf8')));
 
     ContextRandomNumber.init(config.random.seed || null, config.random.contextualSeed || false);
 

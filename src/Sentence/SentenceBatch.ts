@@ -1,4 +1,4 @@
-import uuidV4 from 'uuid/v4';
+import { v4 } from 'uuid';
 import { Sentence } from './Sentence';
 
 export class SentenceBatch {
@@ -19,13 +19,13 @@ export class SentenceBatch {
   toDialogFlowJSON(): Array<any> {
     const dfJSON = new Array();
 
-    this.sentences.forEach(sentence => {
+    this.sentences.forEach((sentence) => {
       dfJSON.push({
-        id: uuidV4(),
+        id: v4(),
         data: sentence.toDfJSON(),
         isTemplate: false,
         count: 0,
-        updated: 0
+        updated: 0,
       });
     });
 
